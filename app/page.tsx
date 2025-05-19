@@ -10,23 +10,23 @@ import Work from "@/components/sections/Work";
 export function Home() {
   return (
     <>
-      <section data-scroll-section>
+      <section>
         <ClientHero />
       </section>
 
-      <section id="about" data-scroll-section>
+      <section id="about">
         <About />
       </section>
 
-      <section className="my-7" data-scroll-section>
+      <section className="my-7">
         <VelocityScrollSection />
       </section>
 
-      <section data-scroll-section>
+      <section>
         <Work />
       </section>
 
-      <section className="my-7" id="contact" data-scroll-section>
+      <section className="my-7" id="contact">
         <Contact />
       </section>
     </>

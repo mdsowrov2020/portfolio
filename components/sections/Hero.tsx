@@ -56,8 +56,6 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.4, 0.0, 0.2, 1] }}
           className="w-full lg:w-1/2 text-center lg:text-left"
-          data-scroll
-          data-scroll-speed="1"
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 dark:text-white leading-tight">
             {/* <span className="block mb-2 text-base md:text-lg lg:text-xl text-neutral-600 dark:text-neutral-300 font-medium">
@@ -104,11 +102,7 @@ const Hero = () => {
         </motion.div>
 
         {/* Right Compare Image */}
-        <div
-          className="w-full lg:w-1/2 flex justify-center"
-          data-scroll
-          data-scroll-speed="-1"
-        >
+        <div className="w-full lg:w-1/2 flex justify-center">
           <div className="w-full max-w-[350px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[500px] p-3 border rounded-3xl bg-neutral-100 dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800">
             <Compare
               firstImage="/first.png"
