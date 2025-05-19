@@ -5,6 +5,7 @@ import { HeroHighlight } from "@/components/ui/hero-highlight";
 import { ThemeProvider } from "next-themes";
 import { Nav } from "@/components/common/Nav";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
+import ClientLayoutWrapper from "@/components/common/ClientLayoutWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,18 +33,7 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <HeroHighlight>
-            {/* <SmoothCursor /> */}
-            <Nav />
-            {children}
-          </HeroHighlight>
-        </ThemeProvider>
+        <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
       </body>
     </html>
   );

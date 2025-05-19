@@ -67,7 +67,11 @@ const About = () => {
   return (
     <div className="w-full box-border">
       <Wrapper className="">
-        <div className="grid grid-cols-12 md:grid-cols-12 gap-8 items-center">
+        <div
+          className="grid grid-cols-12 md:grid-cols-12 gap-8 items-center"
+          data-scroll
+          data-scroll-speed="1"
+        >
           <div className="relative col-span-12 md:col-span-4 w-full h-[200px] sm:h-[300px] md:h-auto max-w-xs mx-auto  rounded-2xl overflow-hidden shadow-xl z-10  sm:mx-0">
             <Lens hovering={hovering} setHovering={setHovering}>
               <img
@@ -78,7 +82,11 @@ const About = () => {
             </Lens>
           </div>
 
-          <div className="col-span-12 md:col-span-8 w-full">
+          <div
+            className="col-span-12 md:col-span-8 w-full"
+            data-scroll
+            data-scroll-speed="-1"
+          >
             <MagicCard
               className="h-full rounded-2xl bg-transparent "
               gradientColor={theme === "dark" ? "#262626" : "#d9d9d990"}

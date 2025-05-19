@@ -34,7 +34,7 @@ export function Nav() {
   if (!mounted) return null; // Prevent hydration mismatch
 
   return (
-    <div className="sticky top-0 z-50 w-full ">
+    <div className="sticky top-0 z-[100] w-full ">
       <Wrapper>
         <Navbar>
           {/* Desktop Navigation */}

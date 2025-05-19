@@ -1,3 +1,4 @@
+import LocomotiveScrollWrapper from "@/components/common/LocomotiveScrollWrapper";
 import About from "@/components/sections/About";
 import ClientHero from "@/components/sections/ClientHero";
 import Contact from "@/components/sections/Contact";
@@ -5,29 +6,31 @@ import Education from "@/components/sections/Education";
 import Great from "@/components/sections/Great";
 import VelocityScrollSection from "@/components/sections/VelocityScroll";
 import Work from "@/components/sections/Work";
-import React from "react";
 
-const Home = () => {
+export function Home() {
   return (
-    <div>
-      <ClientHero />
+    <>
+      <section data-scroll-section>
+        <ClientHero />
+      </section>
 
-      <div id="about">
+      <section id="about" data-scroll-section>
         <About />
-      </div>
+      </section>
 
-      <div className="my-7">
+      <section className="my-7" data-scroll-section>
         <VelocityScrollSection />
-      </div>
+      </section>
 
-      <Work />
-      <Education />
-      <div className="my-7" id="contact">
+      <section data-scroll-section>
+        <Work />
+      </section>
+
+      <section className="my-7" id="contact" data-scroll-section>
         <Contact />
-      </div>
-      {/* <Great /> */}
-    </div>
+      </section>
+    </>
   );
-};
+}
 
 export default Home;
