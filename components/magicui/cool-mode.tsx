@@ -32,9 +32,7 @@ const getContainer = () => {
   const id = "_coolMode_effect";
   const existingContainer = document.getElementById(id);
 
-  if (existingContainer) {
-    return existingContainer;
-  }
+  if (existingContainer) return existingContainer;
 
   const container = document.createElement("div");
   container.setAttribute("id", id);
@@ -44,7 +42,6 @@ const getContainer = () => {
   );
 
   document.body.appendChild(container);
-
   return container;
 };
 
@@ -179,8 +176,8 @@ const applyParticleEffect = (
 
   const updateMousePosition = (e: MouseEvent | TouchEvent) => {
     if ("touches" in e) {
-      mouseX = e.touches?.[0].clientX;
-      mouseY = e.touches?.[0].clientY;
+      mouseX = e.touches?.[0].clientX ?? 0;
+      mouseY = e.touches?.[0].clientY ?? 0;
     } else {
       mouseX = e.clientX;
       mouseY = e.clientY;
@@ -228,7 +225,7 @@ interface CoolModeProps {
 }
 
 export const CoolMode: React.FC<CoolModeProps> = ({ children, options }) => {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (ref.current) {
@@ -236,5 +233,5 @@ export const CoolMode: React.FC<CoolModeProps> = ({ children, options }) => {
     }
   }, [options]);
 
-  return React.cloneElement(children as React.ReactElement, { ref });
+  return <div ref={ref}>{children}</div>; // ✅ Wrapped children in div with ref
 };

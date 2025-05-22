@@ -1,11 +1,10 @@
 import About from "@/components/sections/About";
-import ClientHero from "@/components/sections/ClientHero";
-import Contact from "@/components/sections/Contact";
-
-import VelocityScrollSection from "@/components/sections/VelocityScroll";
 import Work from "@/components/sections/Work";
+import Contact from "@/components/sections/Contact";
+import ClientHero from "@/components/sections/ClientHero";
+import VelocityScrollSection from "@/components/sections/VelocityScroll";
 
-export function Home() {
+export default function Home() {
   return (
     <>
       <section>
@@ -30,5 +29,3 @@ export function Home() {
     </>
   );
 }
-
-export default Home;

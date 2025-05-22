@@ -9,6 +9,7 @@ import { MagicCard } from "../magicui/magic-card";
 import { CoolMode } from "../magicui/cool-mode";
 import { Button } from "../ui/button";
 import { Lens } from "../ui/lens";
+import Image from "next/image";
 
 const About = () => {
   const { theme } = useTheme();
@@ -65,13 +66,18 @@ const About = () => {
     <div className="w-full box-border">
       <Wrapper className="">
         <div className="grid grid-cols-12 md:grid-cols-12 gap-8 items-center">
-          <div className="relative col-span-12 md:col-span-4 w-full h-[200px] sm:h-[300px] md:h-auto max-w-xs mx-auto  rounded-2xl overflow-hidden shadow-xl z-10  sm:mx-0">
+          <div className="relative col-span-12 md:col-span-4 w-full  max-w-xs mx-auto rounded-2xl overflow-hidden shadow-xl z-10 sm:mx-0">
             <Lens hovering={hovering} setHovering={setHovering}>
-              <img
-                src="/bg.jpg"
-                alt="About me"
-                className="w-full h-full object-cover rounded-2xl"
-              />
+              <div className="relative w-full h-[200px] sm:h-[300px] md:h-[400px]">
+                <Image
+                  src="/bg.jpg"
+                  alt="About me"
+                  fill
+                  style={{ objectFit: "cover" }}
+                  className="rounded-2xl"
+                  priority
+                />
+              </div>
             </Lens>
           </div>
 
