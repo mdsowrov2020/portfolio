@@ -5,7 +5,6 @@ import { HeroHighlight } from "@/components/ui/hero-highlight";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import { Nav } from "@/components/common/Nav";
 import LoadingScreen from "@/components/common/LoadingScreen";
-import LocomotiveScrollWrapper from "./LocomotiveScrollWrapper";
 
 export default function ClientLayoutWrapper({
   children,

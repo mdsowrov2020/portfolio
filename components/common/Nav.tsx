@@ -17,7 +17,7 @@ import Link from "next/link";
 import Wrapper from "./Wrapper";
 
 export function Nav() {
-  const { theme, resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 

@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { HeroHighlight } from "@/components/ui/hero-highlight";
-import { ThemeProvider } from "next-themes";
-import { Nav } from "@/components/common/Nav";
-import { SmoothCursor } from "@/components/ui/smooth-cursor";
+
 import ClientLayoutWrapper from "@/components/common/ClientLayoutWrapper";
 
 const geistSans = Geist({

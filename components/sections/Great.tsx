@@ -1,7 +1,6 @@
 import React from "react";
 import Wrapper from "../common/Wrapper";
 import { SparklesText } from "../magicui/sparkles-text";
-import { TextHoverEffect } from "../ui/text-hover-effect";
 
 const Great = () => {
   return (

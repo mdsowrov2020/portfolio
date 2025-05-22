@@ -1,52 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
+
 import Wrapper from "../common/Wrapper";
-import { ShimmerButton } from "../magicui/shimmer-button";
+
 import { Cover } from "../ui/cover";
 import { ContainerTextFlip } from "../ui/container-text-flip";
-import { IconCloud } from "../magicui/icon-cloud";
+
 import { Compare } from "../ui/compare";
 
-const slugs = [
-  "typescript",
-  "javascript",
-  "dart",
-  "java",
-  "react",
-  "flutter",
-  "android",
-  "html5",
-  "css3",
-  "nodedotjs",
-  "express",
-  "nextdotjs",
-  "prisma",
-  "amazonaws",
-  "postgresql",
-  "firebase",
-  "nginx",
-  "vercel",
-  "testinglibrary",
-  "jest",
-  "cypress",
-  "docker",
-  "git",
-  "jira",
-  "github",
-  "gitlab",
-  "visualstudiocode",
-  "androidstudio",
-  "sonarqube",
-  "figma",
-];
-
 const Hero = () => {
-  const images = slugs.map(
-    (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`
-  );
-
   return (
     <div className="w-full flex items-center justify-center min-h-[80vh] lg:min-h-screen px-4">
       <Wrapper className="flex flex-col-reverse lg:flex-row items-center justify-between w-full px-10 lg:px-0 gap-8 lg:gap-16">
@@ -62,7 +25,7 @@ const Hero = () => {
               Crafting digital excellence
               
             </span> */}
-            Hello! <br /> I'm{" "}
+            Hello! <br /> I&apos;m{" "}
             <Cover>
               <span className="text-blue-600 dark:text-blue-400">
                 Md Sowrov

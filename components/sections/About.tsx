@@ -4,14 +4,11 @@ import React, { useState } from "react";
 import { useTheme } from "next-themes";
 
 import Wrapper from "../common/Wrapper";
-import Image from "next/image";
-import HeroImage from "@/public/bg.jpg";
+
 import { MagicCard } from "../magicui/magic-card";
 import { CoolMode } from "../magicui/cool-mode";
 import { Button } from "../ui/button";
 import { Lens } from "../ui/lens";
-import { cn } from "@/lib/utils";
-import { div } from "framer-motion/client";
 
 const About = () => {
   const { theme } = useTheme();
