@@ -177,7 +177,7 @@ const About = () => {
                       variant="secondary"
                       className="px-12 py-6 rounded-full border border-black/5 bg-gray-600 text-base text-gray-100 dark:text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800"
                     >
-                      Download CV
+                      Get Resume
                     </Button>
                   </CoolMode>
                 </div>

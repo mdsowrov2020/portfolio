@@ -19,7 +19,7 @@ export default function Home() {
         <VelocityScrollSection />
       </section>
 
-      <section>
+      <section id="work">
         <Work />
       </section>
 

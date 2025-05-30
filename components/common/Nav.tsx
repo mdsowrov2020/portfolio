@@ -31,6 +31,25 @@ export function Nav() {
     { name: "Contact", link: "#contact" },
   ];
 
+  // Smooth scroll handler
+  const handleScrollToSection = (e, sectionId) => {
+    e.preventDefault();
+
+    // Remove the # from the sectionId
+    const targetId = sectionId.replace("#", "");
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+
+    // Close mobile menu if open
+    setIsMobileMenuOpen(false);
+  };
+
   if (!mounted) return null; // Prevent hydration mismatch
 
   return (
@@ -46,7 +65,18 @@ export function Nav() {
               <NavbarLogo />
             </Link>
 
-            <NavItems items={navItems} />
+            {/* Updated NavItems with smooth scrolling */}
+            <div className="hidden md:flex items-center space-x-6">
+              {navItems.map((item, idx) => (
+                <button
+                  key={`desktop-nav-${idx}`}
+                  onClick={(e) => handleScrollToSection(e, item.link)}
+                  className="text-neutral-600 dark:text-neutral-300 hover:text-blue-500 transition-colors duration-200 cursor-pointer"
+                >
+                  {item.name}
+                </button>
+              ))}
+            </div>
 
             <button
               onClick={() =>
@@ -80,14 +110,13 @@ export function Nav() {
               onClose={() => setIsMobileMenuOpen(false)}
             >
               {navItems.map((item, idx) => (
-                <Link
+                <button
                   key={`mobile-link-${idx}`}
-                  href={item.link}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2 text-neutral-600 dark:text-neutral-300 hover:text-blue-500 transition-colors"
+                  onClick={(e) => handleScrollToSection(e, item.link)}
+                  className="block py-2 text-left w-full text-neutral-600 dark:text-neutral-300 hover:text-blue-500 transition-colors"
                 >
                   {item.name}
-                </Link>
+                </button>
               ))}
               <button
                 onClick={() => {
@@ -115,97 +144,3 @@ export function Nav() {
     </div>
   );
 }
-
-// "use client";
-// import {
-//   Navbar,
-//   NavBody,
-//   NavItems,
-//   MobileNav,
-//   NavbarLogo,
-//   NavbarButton,
-//   MobileNavHeader,
-//   MobileNavToggle,
-//   MobileNavMenu,
-// } from "@/components/ui/resizable-navbar";
-// import { useState } from "react";
-
-// export function Nav() {
-//   const navItems = [
-//     {
-//       name: "About",
-//       link: "#about",
-//     },
-//     {
-//       name: "Works",
-//       link: "#works",
-//     },
-//     {
-//       name: "Contact",
-//       link: "#contact",
-//     },
-//   ];
-
-//   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-//   return (
-//     <div className="relative w-full mt-5">
-//       <Navbar>
-//         {/* Desktop Navigation */}
-//         <NavBody>
-//           <NavbarLogo />
-//           <NavItems items={navItems} />
-//           <div className="flex items-center gap-4">
-//             <NavbarButton variant="secondary">Login</NavbarButton>
-//             <NavbarButton variant="primary">Book a call</NavbarButton>
-//           </div>
-//         </NavBody>
-
-//         {/* Mobile Navigation */}
-//         <MobileNav>
-//           <MobileNavHeader>
-//             <NavbarLogo />
-//             <MobileNavToggle
-//               isOpen={isMobileMenuOpen}
-//               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-//             />
-//           </MobileNavHeader>
-
-//           <MobileNavMenu
-//             isOpen={isMobileMenuOpen}
-//             onClose={() => setIsMobileMenuOpen(false)}
-//           >
-//             {navItems.map((item, idx) => (
-//               <a
-//                 key={`mobile-link-${idx}`}
-//                 href={item.link}
-//                 onClick={() => setIsMobileMenuOpen(false)}
-//                 className="relative text-neutral-600 dark:text-neutral-300"
-//               >
-//                 <span className="block">{item.name}</span>
-//               </a>
-//             ))}
-//             <div className="flex w-full flex-col gap-4">
-//               <NavbarButton
-//                 onClick={() => setIsMobileMenuOpen(false)}
-//                 variant="primary"
-//                 className="w-full"
-//               >
-//                 Login
-//               </NavbarButton>
-//               <NavbarButton
-//                 onClick={() => setIsMobileMenuOpen(false)}
-//                 variant="primary"
-//                 className="w-full"
-//               >
-//                 Book a call
-//               </NavbarButton>
-//             </div>
-//           </MobileNavMenu>
-//         </MobileNav>
-//       </Navbar>
-
-//       {/* Navbar */}
-//     </div>
-//   );
-// }

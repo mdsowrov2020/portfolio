@@ -1,103 +1,68 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
-import DummyImage from "@/public/bg.jpg";
+import WorkOne from "@/public/images/0.png";
+import WorkTwo from "@/public/images/1.png";
+import WorkThree from "@/public/images/2.png";
 import { useState } from "react";
+import Project from "@/components/common/Project";
+import Modal from "../common/Modal";
+import Wrapper from "../common/Wrapper";
+import { StaticImageData } from "next/image";
 
-const projects = [
+type ProjectType = {
+  slug: string;
+  title: string;
+  category: string;
+  image: StaticImageData;
+  color: string;
+};
+
+type ModalState = {
+  active: boolean;
+  index: number;
+};
+
+const projects: ProjectType[] = [
   {
     slug: "project-one",
-    title: "Modern Web App",
+    title: "AgCrop",
     category: "Development",
-    image: DummyImage,
+    image: WorkOne,
+    color: "#000000",
   },
   {
     slug: "project-two",
-    title: "Creative Landing",
-    category: "UI/UX",
-    image: DummyImage,
+    title: "My blog",
+    category: "Development",
+    image: WorkTwo,
+    color: "#8C8C8C",
   },
   {
     slug: "project-three",
-    title: "Management System",
+    title: "Hospital Management System",
     category: "Development",
-    image: DummyImage,
+    image: WorkThree,
+    color: "#EFE8D3",
   },
 ];
 
 export default function Home() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [modal, setModal] = useState<ModalState>({ active: false, index: 0 });
 
   return (
-    <main className="text-neutral-900 dark:text-neutral-100 px-6 py-12 max-w-7xl mx-auto">
-      <h1 className="text-xl font-medium mb-12">Recent Work</h1>
-      <div className="work-container relative space-y-6 sm:space-y-0">
-        {projects.map((item, index) => (
-          <div
-            key={index}
-            className="relative group"
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
-            onMouseMove={(e) => {
-              const rect = (
-                e.currentTarget as HTMLDivElement
-              ).getBoundingClientRect();
-              setCursorPos({
-                x: e.clientX - rect.left,
-                y: e.clientY - rect.top,
-              });
-            }}
-          >
-            {/* 👇 Show floating image ONLY on mobile (no hover needed) */}
-            <div className="relative w-[200px] h-[200px] sm:h-[300px] overflow-hidden rounded-lg shadow-xl sm:hidden mx-auto">
-              <Image
-                src={item.image}
-                alt={item.title}
-                fill
-                className="object-cover"
-                sizes="100vw"
-              />
-            </div>
+    <div className="text-neutral-900 dark:text-neutral-100 max-w-7xl mx-auto my-28">
+      <Wrapper>
+        <h1 className="text-xl font-medium mb-12">Recent Work</h1>
 
-            {/* 👇 Show floating image on hover ONLY for desktop */}
-            {hoveredIndex === index && (
-              <motion.div
-                className="absolute h-[300px] w-[350px] overflow-hidden rounded-lg shadow-2xl pointer-events-none z-50 hidden sm:block"
-                initial={{ opacity: 0 }}
-                animate={{
-                  x: cursorPos.x - 175,
-                  y: cursorPos.y - 150,
-                  opacity: 1,
-                }}
-                exit={{ opacity: 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              >
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                  sizes="350px"
-                />
-              </motion.div>
-            )}
-
-            {/* 👇 Work Card: Hidden on mobile, shown on sm+ */}
-            <div
-              className={`work hidden sm:flex justify-between items-center py-16 px-20 border border-l-transparent border-r-transparent border-b-gray-200/40 dark:border-b-gray-700/80 hover:px-16 transition-all duration-500 relative z-10 ${
-                index === 0
-                  ? "border-t-gray-700/40 dark:border-t-gray-700/80"
-                  : ""
-              }`}
-            >
-              <h2 className="text-6xl">{item.title}</h2>
-              <p>{item.category}</p>
+        <div className="relative overflow-hidden z-50">
+          {projects.map((project, i) => (
+            <div key={i} className="block">
+              <Project index={i} title={project.title} setModal={setModal} />
             </div>
-          </div>
-        ))}
-      </div>
-    </main>
+          ))}
+        </div>
+        <Modal modal={modal} projects={projects} />
+      </Wrapper>
+    </div>
   );
 }

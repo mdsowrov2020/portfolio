@@ -20,11 +20,11 @@ export default function ClientLayoutWrapper({
         enableSystem
         disableTransitionOnChange
       >
-        <HeroHighlight>
-          <SmoothCursor />
-          <Nav />
-          {children}
-        </HeroHighlight>
+        {/* <HeroHighlight> */}
+        {/* <SmoothCursor /> */}
+        <Nav />
+        {children}
+        {/* </HeroHighlight> */}
       </ThemeProvider>
     </>
   );
