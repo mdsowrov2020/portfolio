@@ -4,6 +4,8 @@ import { ThemeProvider } from "next-themes";
 import LoadingScreen from "./LoadingScreen";
 
 import { Nav } from "./Nav";
+import AnimatedBg from "./AnimatedBg";
+import FloatingButton from "./FloatingButton";
 
 export default function ClientLayoutWrapper({
   children,
@@ -20,6 +22,8 @@ export default function ClientLayoutWrapper({
         disableTransitionOnChange
       >
         <Nav />
+        <AnimatedBg />
+        <FloatingButton />
         {children}
       </ThemeProvider>
     </>
