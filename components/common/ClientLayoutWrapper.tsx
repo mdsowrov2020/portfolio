@@ -6,6 +6,7 @@ import LoadingScreen from "./LoadingScreen";
 import { Nav } from "./Nav";
 import AnimatedBg from "./AnimatedBg";
 import FloatingButton from "./FloatingButton";
+import Footer from "./Footer";
 
 export default function ClientLayoutWrapper({
   children,
@@ -25,6 +26,7 @@ export default function ClientLayoutWrapper({
         <AnimatedBg />
         <FloatingButton />
         {children}
+        <Footer />
       </ThemeProvider>
     </>
   );

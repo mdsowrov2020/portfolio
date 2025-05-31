@@ -18,7 +18,7 @@ const Project = ({ index, title, category, setModal }: ProjectProps) => {
 
   return (
     <div
-      className="group flex items-center justify-between border-t border-gray-600 dark:border-t-gray-400 border-b-0 last:border-b last:border-gray-400 dark:last:border-b-gray-400 py-14 px-24  transition-all w-full"
+      className={`group flex items-center justify-between border-t border-gray-600 dark:border-t-gray-400 border-b-0 last:border-b last:border-gray-400 dark:last:border-b-gray-400 py-14 px-24  transition-all w-full cursor-pointer`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

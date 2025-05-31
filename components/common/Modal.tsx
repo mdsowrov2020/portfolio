@@ -38,12 +38,11 @@ const scaleAnimation = {
 
 const Modal: React.FC<ModalProps> = ({ modal, projects }) => {
   const { active, index } = modal;
-  const modalContainer = useRef(null);
-  const cursor = useRef(null);
-  const cursorLabel = useRef(null);
+  const modalContainer = useRef<HTMLDivElement | null>(null);
+  const cursor = useRef<HTMLDivElement | null>(null);
+  const cursorLabel = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    // Only move the modal container, not the cursor and label
     const xMoveContainer = gsap.quickTo(modalContainer.current, "left", {
       duration: 0.8,
       ease: "power3",
@@ -53,72 +52,91 @@ const Modal: React.FC<ModalProps> = ({ modal, projects }) => {
       ease: "power3",
     });
 
-    window.addEventListener("mousemove", (e) => {
+    const xMoveCursor = gsap.quickTo(cursor.current, "left", {
+      duration: 0.5,
+      ease: "power3",
+    });
+    const yMoveCursor = gsap.quickTo(cursor.current, "top", {
+      duration: 0.5,
+      ease: "power3",
+    });
+
+    const xMoveCursorLabel = gsap.quickTo(cursorLabel.current, "left", {
+      duration: 0.45,
+      ease: "power3",
+    });
+    const yMoveCursorLabel = gsap.quickTo(cursorLabel.current, "top", {
+      duration: 0.45,
+      ease: "power3",
+    });
+
+    const handleMouseMove = (e: MouseEvent) => {
       const { pageX, pageY } = e;
-      // Only move the modal container
       xMoveContainer(pageX);
       yMoveContainer(pageY);
-      // Remove cursor movement - they should stay centered in modal
-    });
+      xMoveCursor(pageX);
+      yMoveCursor(pageY);
+      xMoveCursorLabel(pageX);
+      yMoveCursorLabel(pageY);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
     <>
+      {/* Modal container that follows cursor */}
       <motion.div
-        className="absolute z-50 pointer-events-none"
         ref={modalContainer}
         variants={scaleAnimation}
         initial="initial"
         animate={active ? "enter" : "closed"}
+        className="w-[400px] h-[350px] absolute overflow-hidden pointer-events-none z-50"
+        style={{ transform: "translate(-50%, -50%)" }}
       >
-        <div className=" bg-amber-50  relative ">
-          <div className="h-[300px] w-full overflow-hidden  relative">
-            {projects.map((project, i) => (
-              <div
-                className="h-[300px] w-[350px] p-10 overflow-hidden  relative transition-[top] duration-[500ms] ease-[cubic-bezier(0.76,0,0.24,1)]"
-                key={i}
-                style={{ top: index * -100 + "%", background: project.color }}
-              >
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-[top] duration-[500ms] ease-[cubic-bezier(0.76,0,0.24,1)] p-10"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Cursor centered on entire modal - positioned outside to avoid conflicts */}
-        <motion.div
-          ref={cursor}
-          className=" w-20 h-20 rounded-full bg-[#455CE9] text-white absolute z-20 flex items-center justify-center text-sm font-light pointer-events-none"
-          style={{
-            left: "50%",
-            top: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-          variants={scaleAnimation}
-          initial="initial"
-          animate={active ? "enter" : "closed"}
-        />
-
-        {/* Label centered on entire modal */}
-        <motion.div
-          ref={cursorLabel}
-          className="bg-transparent  absolute z-30 text-white text-sm font-light pointer-events-none flex items-center justify-center"
-          style={{
-            left: "50%",
-            top: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-          variants={scaleAnimation}
-          initial="initial"
-          animate={active ? "enter" : "closed"}
+        <div
+          className="absolute w-full h-full transition-[top] duration-[0.5s] ease-[cubic-bezier(0.76,0,0.24,1)]"
+          style={{ top: `${-index * 100}%` }}
         >
-          View
-        </motion.div>
+          {projects.map((project, i) => (
+            <div
+              key={i}
+              className="w-full h-full flex items-center justify-center"
+              style={{ backgroundColor: project.color }}
+            >
+              <Image
+                src={project.image}
+                alt={project.title}
+                width={300}
+                height={200}
+                className="object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Independent cursor circle */}
+      <motion.div
+        ref={cursor}
+        className="w-20 h-20 rounded-full bg-[#455CE9] text-white absolute z-50 flex items-center justify-center text-sm font-light pointer-events-none"
+        variants={scaleAnimation}
+        initial="initial"
+        animate={active ? "enter" : "closed"}
+        style={{ transform: "translate(-50%, -50%)" }}
+      />
+
+      {/* Independent cursor label */}
+      <motion.div
+        ref={cursorLabel}
+        className="w-20 h-20 rounded-full bg-transparent text-white absolute z-50 flex items-center justify-center text-sm font-light pointer-events-none"
+        variants={scaleAnimation}
+        initial="initial"
+        animate={active ? "enter" : "closed"}
+        style={{ transform: "translate(-50%, -50%)" }}
+      >
+        View
       </motion.div>
     </>
   );
