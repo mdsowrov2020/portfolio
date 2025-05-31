@@ -15,6 +15,7 @@
     "@tsparticles/engine": "^3.8.1",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.8.1",
+    "@types/locomotive-scroll": "^4.1.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.12.1",
@@ -27,6 +28,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.16.0",
+    "sass": "^1.89.1",
     "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {

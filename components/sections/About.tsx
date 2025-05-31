@@ -7,9 +7,10 @@ import Wrapper from "../common/Wrapper";
 
 import { MagicCard } from "../magicui/magic-card";
 import { CoolMode } from "../magicui/cool-mode";
-import { Button } from "../ui/button";
+
 import { Lens } from "../ui/lens";
 import Image from "next/image";
+import CustomButton from "../common/CustomButton";
 
 const About = () => {
   const { theme } = useTheme();
@@ -87,11 +88,11 @@ const About = () => {
               gradientColor={theme === "dark" ? "#262626" : "#d9d9d990"}
             >
               <div className="p-6 sm:p-8 h-full flex flex-col justify-center">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-neutral-800 dark:text-neutral-200">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium mb-4 sm:mb-6 text-neutral-800 dark:text-neutral-200">
                   Translating Vision into Interactive Reality
                 </h2>
 
-                <p className="text-sm sm:text-base md:text-lg font-medium text-neutral-600 dark:text-neutral-400 mb-6 sm:mb-8 leading-relaxed">
+                <p className="text-sm sm:text-base md:text-md font-medium text-neutral-600 dark:text-neutral-400 mb-6 sm:mb-8 leading-relaxed">
                   As a software craftsman, I specialize in forging elegant web
                   applications with modern technologies. My anvil is React, my
                   hammer is TypeScript, and my fire is the passion for creating
@@ -173,12 +174,24 @@ const About = () => {
                 </div>
                 <div className="relative justify-center mt-5">
                   <CoolMode>
-                    <Button
-                      variant="secondary"
-                      className="px-12 py-6 rounded-full border border-black/5 bg-gray-600 text-base text-gray-100 dark:text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800"
-                    >
-                      Get Resume
-                    </Button>
+                    <CustomButton className="relative rounded-full font-normal px-8 py-3 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 dark:from-white dark:via-gray-100 dark:to-white text-white dark:text-gray-900 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.2)] dark:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_15px_40px_-10px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_15px_40px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 overflow-hidden group/btn before:absolute before:inset-0 before:bg-gradient-to-r before:from-indigo-400/10 dark:before:from-indigo-500/15 before:via-purple-400/10 dark:before:via-purple-500/15 before:to-cyan-400/10 dark:before:to-cyan-500/15 before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700">
+                      <span className="relative z-10 flex items-center gap-2">
+                        Get Resume
+                        <svg
+                          className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform duration-300"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                          />
+                        </svg>
+                      </span>
+                    </CustomButton>
                   </CoolMode>
                 </div>
               </div>

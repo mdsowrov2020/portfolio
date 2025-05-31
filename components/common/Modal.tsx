@@ -3,6 +3,7 @@ import Image, { StaticImageData } from "next/image";
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
+
 type ProjectType = {
   slug: string;
   title: string;
@@ -70,7 +71,7 @@ const Modal: React.FC<ModalProps> = ({ modal, projects }) => {
         initial="initial"
         animate={active ? "enter" : "closed"}
       >
-        <div className=" bg-amber-50  relative">
+        <div className=" bg-amber-50  relative ">
           <div className="h-[300px] w-full overflow-hidden  relative">
             {projects.map((project, i) => (
               <div
@@ -92,7 +93,7 @@ const Modal: React.FC<ModalProps> = ({ modal, projects }) => {
         {/* Cursor centered on entire modal - positioned outside to avoid conflicts */}
         <motion.div
           ref={cursor}
-          className="w-20 h-20 rounded-full bg-[#455CE9] text-white absolute z-20 flex items-center justify-center text-sm font-light pointer-events-none"
+          className=" w-20 h-20 rounded-full bg-[#455CE9] text-white absolute z-20 flex items-center justify-center text-sm font-light pointer-events-none"
           style={{
             left: "50%",
             top: "50%",
@@ -106,7 +107,7 @@ const Modal: React.FC<ModalProps> = ({ modal, projects }) => {
         {/* Label centered on entire modal */}
         <motion.div
           ref={cursorLabel}
-          className="bg-transparent absolute z-30 text-white text-sm font-light pointer-events-none flex items-center justify-center"
+          className="bg-transparent  absolute z-30 text-white text-sm font-light pointer-events-none flex items-center justify-center"
           style={{
             left: "50%",
             top: "50%",
