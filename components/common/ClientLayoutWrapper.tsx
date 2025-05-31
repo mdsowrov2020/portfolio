@@ -2,8 +2,7 @@
 
 import { ThemeProvider } from "next-themes";
 import LoadingScreen from "./LoadingScreen";
-import { HeroHighlight } from "../ui/hero-highlight";
-import { SmoothCursor } from "../ui/smooth-cursor";
+
 import { Nav } from "./Nav";
 
 export default function ClientLayoutWrapper({
@@ -20,11 +19,8 @@ export default function ClientLayoutWrapper({
         enableSystem
         disableTransitionOnChange
       >
-        {/* <HeroHighlight> */}
-        {/* <SmoothCursor /> */}
         <Nav />
         {children}
-        {/* </HeroHighlight> */}
       </ThemeProvider>
     </>
   );

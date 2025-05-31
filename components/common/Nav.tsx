@@ -3,7 +3,6 @@
 import {
   Navbar,
   NavBody,
-  NavItems,
   MobileNav,
   NavbarLogo,
   MobileNavHeader,
@@ -32,7 +31,10 @@ export function Nav() {
   ];
 
   // Smooth scroll handler
-  const handleScrollToSection = (e, sectionId) => {
+  const handleScrollToSection = (
+    e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>,
+    sectionId: string
+  ): void => {
     e.preventDefault();
 
     // Remove the # from the sectionId

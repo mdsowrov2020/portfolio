@@ -1,6 +1,10 @@
 import React from "react";
-
-const Project = ({ index, title, setModal }) => {
+type ProjectProps = {
+  index: number;
+  title: string;
+  setModal: (modal: { active: boolean; index: number }) => void;
+};
+const Project = ({ index, title, setModal }: ProjectProps) => {
   const handleMouseEnter = () => {
     console.log(`Activating modal for project ${index}`);
     setModal({ active: true, index });
