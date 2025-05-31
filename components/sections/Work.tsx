@@ -1,8 +1,6 @@
 "use client";
 
-import WorkOne from "@/public/images/0.png";
-import WorkTwo from "@/public/images/1.png";
-import WorkThree from "@/public/images/2.png";
+import Coming from "@/public/images/dummy.png";
 import { useState } from "react";
 import Project from "@/components/common/Project";
 import Modal from "../common/Modal";
@@ -29,21 +27,21 @@ const projects: ProjectType[] = [
     slug: "project-one",
     title: "AgCrop",
     category: "Design & development",
-    image: WorkOne,
+    image: Coming,
     color: "#000000",
   },
   {
     slug: "project-two",
     title: "My blog",
     category: "Design & development",
-    image: WorkTwo,
+    image: Coming,
     color: "#8C8C8C",
   },
   {
     slug: "project-three",
     title: "HMS",
     category: "Design & development",
-    image: WorkThree,
+    image: Coming,
     color: "#EFE8D3",
   },
 ];
