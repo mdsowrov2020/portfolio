@@ -58,7 +58,6 @@ const HeroSection = () => {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Minimalist dot grid that responds to mouse
     const dots: Dot[] = [];
     const spacing = 60;
     const cols = Math.ceil(canvas.width / spacing) + 1;
@@ -142,7 +141,6 @@ const HeroSection = () => {
         }`}
       >
         <div className="text-center max-w-5xl mx-auto">
-          {/* Status indicator */}
           <div className="mb-12 animate-fade-in">
             <div className="inline-flex items-center gap-3 px-5 py-2 bg-gray-800/5 dark:bg-white/5 backdrop-blur-xl border border-gray-800/10 dark:border-white/10 rounded-full">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -152,7 +150,6 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Main title with subtle animation */}
           <div className="mb-8 relative">
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-light leading-none mb-4 tracking-tight">
               <span className="text-gray-800 dark:text-gray-100 animate-fade-in-up">
@@ -162,7 +159,6 @@ const HeroSection = () => {
             <div className="h-px w-24 bg-gradient-to-r from-transparent via-gray-800/40 dark:via-white/40 to-transparent mx-auto animate-expand"></div>
           </div>
 
-          {/* Minimalist role description */}
           <div className="mb-12 animate-fade-in-up delay-300">
             <p className="text-xl md:text-2xl text-gray-800/80 dark:text-white/50 font-light tracking-wide">
               Full Stack Developer
@@ -172,7 +168,6 @@ const HeroSection = () => {
             </p>
           </div>
 
-          {/* Elegant tech stack */}
           <div className="mb-16 animate-fade-in-up delay-500">
             <div className="flex flex-wrap justify-center gap-8 text-gray-800/60 dark:text-white/40 text-sm font-mono">
               <span className="hover:text-white/80 transition-colors duration-300 cursor-default">
@@ -193,7 +188,6 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Minimalist buttons */}
           <div className="mb-20 flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up delay-700">
             <Link
               href="#work"
@@ -209,7 +203,7 @@ const HeroSection = () => {
             </button>
           </div>
 
-          {/* Clean social links */}
+          {/*  Social links */}
           <div className="flex justify-center gap-8 animate-fade-in-up delay-900">
             {socialLinks.map(({ Icon, href, label }, index) => (
               <a

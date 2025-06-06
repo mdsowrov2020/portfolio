@@ -7,6 +7,7 @@ import { Nav } from "./Nav";
 import AnimatedBg from "./AnimatedBg";
 import FloatingButton from "./FloatingButton";
 import Footer from "./Footer";
+import LenisWrapper from "./LenisWrapper";
 
 export default function ClientLayoutWrapper({
   children,
@@ -15,17 +16,17 @@ export default function ClientLayoutWrapper({
 }) {
   return (
     <>
-      <LoadingScreen />
       <ThemeProvider
         attribute="class"
         defaultTheme="system"
         enableSystem
         disableTransitionOnChange
       >
+        <LoadingScreen />
         <Nav />
         <AnimatedBg />
         <FloatingButton />
-        {children}
+        <LenisWrapper>{children}</LenisWrapper>
         <Footer />
       </ThemeProvider>
     </>
