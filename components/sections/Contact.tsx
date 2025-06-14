@@ -1,13 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Wrapper from "../common/Wrapper";
 import { CoolMode } from "../magicui/cool-mode";
-import ContactModal from "../common/ContactModal";
+
 import CustomButton from "../common/CustomButton";
+import { ContactModalNew } from "../common/ContactModalNew";
+import ContactForm from "../common/ContactForm";
 
 const Contact = () => {
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-
   return (
     <Wrapper className="w-7xl">
       <div className="relative overflow-hidden rounded-3xl p-10 sm:p-14 bg-white/60 dark:bg-neutral-900/10 backdrop-blur-3xl shadow-[0_25px_50px_-15px_rgba(0,0,0,0.1),0_0_100px_rgba(99,102,241,0.05)] dark:shadow-[0_25px_50px_-15px_rgba(0,0,0,0.25),0_0_100px_rgba(99,102,241,0.1)] border border-black/10 dark:border-white/5 transition-all duration-700 hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.15),0_0_120px_rgba(139,92,246,0.08)] dark:hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3),0_0_120px_rgba(139,92,246,0.15)] group">
@@ -78,36 +78,35 @@ const Contact = () => {
             {/* Button Glow Effect */}
             <div className="absolute -inset-4 bg-gradient-to-r from-indigo-400/15 dark:from-indigo-500/20 via-purple-400/15 dark:via-purple-500/20 to-cyan-400/15 dark:to-cyan-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse" />
 
-            <CoolMode>
-              <CustomButton
-                onClick={() => setIsContactModalOpen(true)}
-                className="relative rounded-full bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 dark:from-white dark:via-gray-100 dark:to-white text-white dark:text-gray-900 border-0 py-8 px-12 font-medium text-lg tracking-wide shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] dark:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.4)] transform hover:-translate-y-1 active:translate-y-0 transition-all duration-300 overflow-hidden group/button before:absolute before:inset-0 before:bg-gradient-to-r before:from-indigo-400/8 dark:before:from-indigo-500/10 before:via-purple-400/8 dark:before:via-purple-500/10 before:to-cyan-400/8 dark:before:to-cyan-500/10 before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700 before:ease-out"
-              >
-                <span className="relative z-10 flex items-center gap-3">
-                  Let&apos;s talk
-                  <svg
-                    className="w-5 h-5 transform group-hover/button:translate-x-1 transition-transform duration-300"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </span>
-              </CustomButton>
-            </CoolMode>
-          </div>
+            <ContactModalNew>
+              <ContactModalNew.Open opens="contact">
+                <CoolMode>
+                  <CustomButton className="relative rounded-full bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 dark:from-white dark:via-gray-100 dark:to-white text-white dark:text-gray-900 border-0 py-8 px-12 font-medium text-lg tracking-wide shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] dark:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.4)] transform hover:-translate-y-1 active:translate-y-0 transition-all duration-300 overflow-hidden group/button before:absolute before:inset-0 before:bg-gradient-to-r before:from-indigo-400/8 dark:before:from-indigo-500/10 before:via-purple-400/8 dark:before:via-purple-500/10 before:to-cyan-400/8 dark:before:to-cyan-500/10 before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700 before:ease-out">
+                    <span className="relative z-10 flex items-center gap-3">
+                      Let&apos;s talk
+                      <svg
+                        className="w-5 h-5 transform group-hover/button:translate-x-1 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </span>
+                  </CustomButton>
+                </CoolMode>
+              </ContactModalNew.Open>
 
-          {/* Modal */}
-          <ContactModal
-            isOpen={isContactModalOpen}
-            onClose={() => setIsContactModalOpen(false)}
-          />
+              <ContactModalNew.ContactModalWindow name="contact">
+                <ContactForm />
+              </ContactModalNew.ContactModalWindow>
+            </ContactModalNew>
+          </div>
         </div>
       </div>
 

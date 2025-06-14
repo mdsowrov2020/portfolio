@@ -222,9 +222,14 @@ const applyParticleEffect = (
 interface CoolModeProps {
   children: ReactNode;
   options?: CoolParticleOptions;
+  onClick?: () => void;
 }
 
-export const CoolMode: React.FC<CoolModeProps> = ({ children, options }) => {
+export const CoolMode: React.FC<CoolModeProps> = ({
+  children,
+  options,
+  onClick,
+}) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -233,5 +238,9 @@ export const CoolMode: React.FC<CoolModeProps> = ({ children, options }) => {
     }
   }, [options]);
 
-  return <div ref={ref}>{children}</div>; // ✅ Wrapped children in div with ref
+  return (
+    <div ref={ref} onClick={onClick}>
+      {children}
+    </div>
+  ); // ✅ Wrapped children in div with ref
 };

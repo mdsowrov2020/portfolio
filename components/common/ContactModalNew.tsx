@@ -1,37 +1,61 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import {
+  useState,
+  createContext,
+  useContext,
+  cloneElement,
+  MouseEventHandler,
+} from "react";
 import { createPortal } from "react-dom";
 import { X, Sparkles } from "lucide-react";
-import ContactForm from "./ContactForm";
-type ContactModalProps = {
-  isOpen: boolean;
-  onClose: () => void;
+
+type OpenProps = {
+  children: React.ReactElement<{ onClick?: MouseEventHandler }>;
+  opens: string;
 };
-export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
-  const [mounted, setMounted] = useState(false);
+type OpenWindow = {
+  children: React.ReactNode;
+  name: string;
+};
+type ContactModalNewProps = {
+  children: React.ReactNode;
+};
+type ModalContextType = {
+  openName: string;
+  open: (name: string) => void;
+  close: () => void;
+};
+const ModalContext = createContext<ModalContextType>({
+  openName: "",
+  open: () => {
+    throw new Error("ModalContext.open called outside of provider");
+  },
+  close: () => {
+    throw new Error("ModalContext.close called outside of provider");
+  },
+});
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+export const ContactModalNew = ({ children }: ContactModalNewProps) => {
+  const [openName, setOpenName] = useState("");
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+  const close = () => setOpenName("");
+  const open = setOpenName;
 
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
+  return (
+    <ModalContext.Provider value={{ openName, close, open }}>
+      {children}
+    </ModalContext.Provider>
+  );
+};
 
-  const closeModal = () => {
-    onClose();
-  };
-
-  if (!mounted || !isOpen) return null;
+const Open = ({ children, opens: opensWindowName }: OpenProps) => {
+  const { open } = useContext(ModalContext);
+  return cloneElement(children, { onClick: () => open(opensWindowName) });
+};
+function ContactModalWindow({ children, name }: OpenWindow) {
+  const { openName, close } = useContext(ModalContext);
+  if (name !== openName) return null;
 
   return createPortal(
     <div
@@ -41,12 +65,12 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
       {/* Enhanced Backdrop with animated gradient */}
       <div
         className="absolute inset-0 bg-gradient-to-br from-black/80 via-purple-900/20 to-blue-900/20 backdrop-blur-xl"
-        onClick={closeModal}
+        onClick={close}
       />
 
       {/* Floating orbs for ambient effect */}
-      <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-20 blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-20 blur-3xl animate-pulse delay-1000" />
+      <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-20 blur-3xl animate-pulse -z-10" />
+      <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-20 blur-3xl animate-pulse delay-1000 -z-10" />
 
       {/* Modal Content with glassmorphism */}
       <div className="relative w-full max-w-lg bg-white/10 dark:bg-black/20 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/20 dark:border-white/10 animate-in zoom-in-95 slide-in-from-bottom-10 duration-500 overflow-hidden">
@@ -56,13 +80,13 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         </div>
 
         {/* Content */}
-        <div className="relative z-10">
+        <div className="relative z-50">
           {/* Header with floating effect */}
           <div className="relative p-8 pb-6">
             {/* Close button with modern styling */}
             <button
-              onClick={closeModal}
-              className="absolute top-6 right-6 p-2 hover:bg-white/20 dark:hover:bg-black/20 rounded-full transition-all duration-200 group backdrop-blur-sm border border-white/10"
+              onClick={close}
+              className="absolute cursor-pointer top-6 right-6 p-2 hover:bg-white/20 dark:hover:bg-black/20 rounded-full transition-all duration-200 group backdrop-blur-sm border border-white/10"
             >
               <X className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors" />
             </button>
@@ -82,7 +106,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 conversation.
               </p>
             </div>
-            <ContactForm />
+            {/* <ContactForm /> */}
+            {children}
           </div>
         </div>
       </div>
@@ -90,3 +115,6 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     document.body
   );
 }
+
+ContactModalNew.Open = Open;
+ContactModalNew.ContactModalWindow = ContactModalWindow;
