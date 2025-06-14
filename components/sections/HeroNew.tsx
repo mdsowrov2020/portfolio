@@ -24,6 +24,7 @@ interface SocialLink {
   Icon: React.ComponentType<{ className?: string }>;
   href: string;
   label: string;
+  target: string;
 }
 
 const HeroSection = () => {
@@ -124,9 +125,24 @@ const HeroSection = () => {
   }, [mousePos.x, mousePos.y]);
 
   const socialLinks: SocialLink[] = [
-    { Icon: Github, href: "#", label: "GitHub" },
-    { Icon: Linkedin, href: "#", label: "LinkedIn" },
-    { Icon: Mail, href: "#", label: "Email" },
+    {
+      Icon: Github,
+      href: "https://github.com/mdsowrov2020",
+      label: "GitHub",
+      target: "_blank",
+    },
+    {
+      Icon: Linkedin,
+      href: "https://www.linkedin.com/in/md-sowrov-316968177/",
+      label: "LinkedIn",
+      target: "_blank",
+    },
+    {
+      Icon: Mail,
+      href: "mailto:your-mdsowrovkhadem@gmail.com",
+      label: "Email",
+      target: "",
+    },
   ];
 
   return (
@@ -209,10 +225,11 @@ const HeroSection = () => {
 
           {/*  Social links */}
           <div className="flex justify-center gap-8 animate-fade-in-up delay-900">
-            {socialLinks.map(({ Icon, href, label }, index) => (
+            {socialLinks.map(({ Icon, href, label, target }, index) => (
               <a
                 key={index}
                 href={href}
+                target={target}
                 className="group p-3 text-gray-800/60 dark:text-white/40 hover:text-gray-800/80 dark:hover:text-white/80 transform hover:scale-110 transition-all duration-300"
                 aria-label={label}
               >
