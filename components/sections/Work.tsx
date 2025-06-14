@@ -1,6 +1,7 @@
 "use client";
 
 import Coming from "@/public/images/dummy.png";
+import AGCROP from "@/public/images/1.png";
 import { useState } from "react";
 import Project from "@/components/common/Project";
 import Modal from "../common/Modal";
@@ -24,10 +25,10 @@ type ModalState = {
 
 const projects: ProjectType[] = [
   {
-    slug: "project-one",
+    slug: "https://agrocrop.netlify.app/",
     title: "AgCrop",
     category: "Design & development",
-    image: Coming,
+    image: AGCROP,
     color: "#000000",
   },
   {
@@ -61,6 +62,7 @@ export default function Home() {
               <Project
                 index={i}
                 title={project.title}
+                slug={project.slug}
                 category={project.category}
                 setModal={setModal}
               />
