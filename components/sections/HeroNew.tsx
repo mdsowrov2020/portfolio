@@ -197,10 +197,14 @@ const HeroSection = () => {
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
 
-            <button className="group px-8 py-3 border border-gray-800/30 dark:border-white/20 text-gray-800/80 dark:text-white/80 font-medium rounded-sm hover:border-gray-800/40 dark:hover:border-white/40 hover:text-gray-800 dark:hover:text-white transform hover:scale-105 transition-all duration-300 flex items-center gap-2 dark:bg-gray-900/30 backdrop-blur-3xl">
+            <Link
+              href="/Md_Sowrov_Khadem_Resume.pdf"
+              download
+              className="group px-8 py-3 border border-gray-800/30 dark:border-white/20 text-gray-800/80 dark:text-white/80 font-medium rounded-sm hover:border-gray-800/40 dark:hover:border-white/40 hover:text-gray-800 dark:hover:text-white transform hover:scale-105 transition-all duration-300 flex items-center gap-2 dark:bg-gray-900/30 backdrop-blur-3xl"
+            >
               <Download className="w-4 h-4" />
               <span>Resume</span>
-            </button>
+            </Link>
           </div>
 
           {/*  Social links */}

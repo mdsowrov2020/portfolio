@@ -210,21 +210,21 @@ const About = () => {
                 {/* Main Content Card */}
                 <div className="relative group">
                   <div className="relative backdrop-blur-xl rounded-2xl p-6 lg:p-8 border bg-gray-200/30 dark:bg-gray-800/30 border-gray-300/50 dark:border-gray-700/50 dark:hover:bg-gray-800/50 transition-all duration-500">
-                    <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-gray-900 dark:text-white">
+                    {/* <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-gray-900 dark:text-white">
                       Crafting Digital{" "}
                       <span className="text-gray-600 dark:text-gray-300">
                         Excellence
                       </span>
-                    </h3>
+                    </h3> */}
 
-                    <p className="text-base lg:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                    <p className="text-base font-light lg:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
                       I specialize in building scalable web applications that
                       solve real business problems. From concept to deployment,
                       I handle the entire development lifecycle with a focus on
                       performance, user experience, and maintainable code
                       architecture.
                     </p>
-
+                    {/* <JobStatusCard /> */}
                     {/* What I Do */}
                     <div className="mb-8">
                       <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
